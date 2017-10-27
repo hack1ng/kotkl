@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Register from '@/components/Register'
 import Login from '@/components/Login'
+import Songs from '@/components/Songs'
+import Teams from '@/components/Teams'
 
 Vue.use(Router)
 
@@ -22,6 +24,16 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/songs',
+      name: 'songs',
+      component: Songs
+    },
+    {
+      path: '/teams',
+      name: 'teams',
+      component: Teams
     }
   ]
 })
