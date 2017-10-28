@@ -2,10 +2,32 @@
   <v-layout column>
     <v-flex xs6 offset-xs3>
       <panel title="Teams">
-        <div v-for="team in teams" 
+        <div v-for="team in teams"
+          class="team" 
           :key="team.id">
-          {{team.owner}} -
-          {{team.name}}
+
+          <v-layout>
+            <v-flex xs6>
+              <div class="team-owner">
+                {{team.owner}}
+              </div>
+              <div class="team-name">
+                {{team.name}}
+              </div>
+
+              <v-btn
+                dark
+                class="orange"
+                @click="navigateTo({
+                  name: 'team',
+                  params: {
+                    teamId: team.id
+                  }
+                })">
+                View Team
+              </v-btn>
+            </v-flex>
+          </v-layout>
         </div>
       </panel>
     </v-flex>
@@ -27,11 +49,28 @@ export default {
   async mounted () {
     // do a request to the backend for all the songs
     this.teams = (await TeamsService.getAll()).data
+  },
+  methods: {
+    navigateTo (route) {
+      this.$router.push(route)
+    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.team {
+  padding: 20px;
+  height: 330px;
+  overflow: hidden;
+}
 
+.team-owner {
+  font-size: 30px;
+}
+
+.team-name {
+  font-size: 24px;
+}
 </style>
