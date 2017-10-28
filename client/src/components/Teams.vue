@@ -21,7 +21,7 @@
                 @click="navigateTo({
                   name: 'team',
                   params: {
-                    teamId: team.id
+                    teamOwner: team.owner
                   }
                 })">
                 View Team

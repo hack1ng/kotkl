@@ -6,5 +6,8 @@ export default {
   },
   create (player) {
     return Api().post('players', player)
+  },
+  getAllPlayersFromTeam (teamOwner) {
+    return Api().get(`players/${teamOwner}`)
   }
 }

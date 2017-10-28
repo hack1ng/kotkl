@@ -29,4 +29,7 @@ module.exports = (app) => {
 
   app.post('/players',
     PlayersController.add)
+
+  app.get('/players/:teamOwner',
+    PlayersController.getAllPlayersFromTeam)
 }

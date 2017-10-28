@@ -22,5 +22,20 @@ module.exports = {
         error: 'An error has occured trying to create the player', err
       })
     }
+  },
+  async getAllPlayersFromTeam (req, res) {
+    try {
+      const teamOwner = req.params.teamOwner
+      const players = await Player.findAll({
+        where: {
+          owner: teamOwner
+        }
+      })
+      res.send(players)
+    } catch (err) {
+      res.status(500).send({
+        error: 'No players were found from that team', err
+      })
+    }
   }
 }

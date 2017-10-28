@@ -45,7 +45,7 @@ export default new Router({
       component: Teams
     },
     {
-      path: '/teams/:teamId',
+      path: '/team/:teamOwner',
       name: 'team',
       component: ViewTeam
     },
