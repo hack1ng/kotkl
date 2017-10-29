@@ -14,6 +14,12 @@
         @click="navigateTo({name: 'teams'})" >
         View Teams
       </v-btn>
+      <v-btn 
+        flat
+        dark
+        @click="navigateTo({name: 'mock-trade'})" >
+        Mock Trade
+      </v-btn>
     </v-toolbar-items>
     <v-spacer />
     <v-toolbar-items >

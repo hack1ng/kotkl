@@ -9,6 +9,7 @@ import Teams from '@/components/Teams'
 import Player from '@/components/Player'
 import CreatePlayer from '@/components/CreatePlayer'
 import ViewTeam from '@/components/ViewTeam'
+import ViewMockTrade from '@/components/ViewMockTrade'
 
 Vue.use(Router)
 
@@ -58,6 +59,11 @@ export default new Router({
       path: '/player/create',
       name: 'player-create',
       component: CreatePlayer
+    },
+    {
+      path: '/mockTrade',
+      name: 'mock-trade',
+      component: ViewMockTrade
     }
   ]
 })
