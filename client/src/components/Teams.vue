@@ -6,8 +6,7 @@
           class="team" 
           :key="team.id">
 
-          <v-layout>
-            <v-flex xs6>
+            <v-flex>
               <div class="team-owner">
                 {{team.owner}}
               </div>
@@ -27,7 +26,6 @@
                 View Team
               </v-btn>
             </v-flex>
-          </v-layout>
         </div>
       </panel>
     </v-flex>
@@ -62,7 +60,6 @@ export default {
 <style scoped>
 .team {
   padding: 20px;
-  height: 330px;
   overflow: hidden;
 }
 

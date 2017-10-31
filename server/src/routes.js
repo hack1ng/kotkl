@@ -21,6 +21,9 @@ module.exports = (app) => {
   app.get('/teams',
     TeamsController.getAll)
 
+  app.get('/team/:teamOwner',
+    TeamsController.getTeam)
+
   app.post('/teams',
     TeamsController.add)
 

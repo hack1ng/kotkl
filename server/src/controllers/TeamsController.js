@@ -13,6 +13,21 @@ module.exports = {
       })
     }
   },
+  async getTeam (req, res) {
+    try {
+      const teamOwner = req.params.teamOwner
+      const team = await Team.findAll({
+        where: {
+          owner: teamOwner
+        }
+      })
+      res.send(team)
+    } catch (err) {
+      res.status(500).send({
+        error: 'No team found with that Owner', err
+      })
+    }
+  },
   async add (req, res) {
     try {
       const team = await Team.create(req.body)
