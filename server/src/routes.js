@@ -3,6 +3,7 @@ const AuthenticationControllerPolicy = require('./policies/AuthenticationControl
 const SongsController = require('./controllers/SongsController')
 const TeamsController = require('./controllers/TeamsController')
 const PlayersController = require('./controllers/PlayersController')
+const TransactionsController = require('./controllers/TransactionsController')
 
 module.exports = (app) => {
   app.post('/register',
@@ -35,4 +36,13 @@ module.exports = (app) => {
 
   app.get('/players/:teamOwner',
     PlayersController.getAllPlayersFromTeam)
+
+  app.get('/transactions',
+    TransactionsController.getAll)
+
+  app.post('/transactions',
+    TransactionsController.add)
+
+  app.get('/transactions/:teamOwner',
+    TransactionsController.getAllTransactionsForTeam)
 }

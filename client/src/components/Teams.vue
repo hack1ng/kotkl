@@ -2,18 +2,17 @@
   <v-layout column>
     <v-flex xs6 offset-xs3>
       <panel title="Teams">
-        <div v-for="team in teams"
+        <v-list two-line v-for="team in teams"
           class="team" 
           :key="team.id">
-
-            <v-flex>
-              <div class="team-owner">
-                {{team.owner}}
-              </div>
-              <div class="team-name">
-                {{team.name}}
-              </div>
-
+          <v-list-tile
+            ripple
+            >
+            <v-list-tile-content>
+              <v-list-tile-title class="team-owner">{{team.owner}}</v-list-tile-title>
+              <v-list-tile-sub-title class="grey--text text--darken-4 team-name">{{team.name}}</v-list-tile-sub-title>
+            </v-list-tile-content>
+            <v-list-tile-action>
               <v-btn
                 dark
                 class="orange"
@@ -25,8 +24,9 @@
                 })">
                 View Team
               </v-btn>
-            </v-flex>
-        </div>
+            </v-list-tile-action>
+          </v-list-tile>
+        </v-list>
       </panel>
     </v-flex>
   </v-layout>
@@ -64,10 +64,10 @@ export default {
 }
 
 .team-owner {
-  font-size: 30px;
+  font-size: 24px;
 }
 
 .team-name {
-  font-size: 24px;
+  font-size: 18px;
 }
 </style>

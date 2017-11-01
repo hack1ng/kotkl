@@ -7,7 +7,7 @@ module.exports = {
   	options: {
   		dialect: process.env.DIALECT || 'sqlite',
   		host: process.env.HOST || 'localhost',
-  		storage: './kotkl.sqlite'
+  		storage: './kotkl.db'
   	}
   },
   authentication: {
