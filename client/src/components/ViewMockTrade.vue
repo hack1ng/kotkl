@@ -1,6 +1,9 @@
 <template>
- <v-layout>
-    <v-flex xs6 mr-2>
+ <v-layout row wrap>
+   <v-flex xs12>
+     <pageTitle title="Mock Trade" />
+   </v-flex>
+    <v-flex xs6 pr-2>
       <v-select
         label="Select Team"
         v-bind:items="teamsList"
@@ -50,15 +53,15 @@
                 <v-list-tile-sub-title>Keeper Eligible? <span v-if="player.keeperEligible=='1'">Yes</span><span v-if="!player.keeperEligible=='1'">No</span></v-list-tile-sub-title>
               </v-list-tile-content>
               <v-list-tile-action>
-                <v-list-tile-action-text>Selected?</v-list-tile-action-text>
+                <v-list-tile-action-text>Trade?</v-list-tile-action-text>
                 <v-icon
                   color="grey lighten-1"
                   v-if="selected1.indexOf(index) < 0"
-                >star_border</v-icon>
+                >check_circle_outline</v-icon>
                 <v-icon
                   color="yellow darken-2"
                   v-else
-                >star</v-icon>
+                >check_circle</v-icon>
               </v-list-tile-action>
             </v-list-tile>
             <v-divider v-if="index + 1 < team1.length" :key="player.id"></v-divider>
@@ -117,15 +120,15 @@
                 <v-list-tile-sub-title>Keeper Eligible? <span v-if="player.keeperEligible=='1'">Yes</span><span v-if="!player.keeperEligible=='1'">No</span></v-list-tile-sub-title>
               </v-list-tile-content>
               <v-list-tile-action>
-                <v-list-tile-action-text>Selected?</v-list-tile-action-text>
+                <v-list-tile-action-text>Trade?</v-list-tile-action-text>
                 <v-icon
                   color="grey lighten-1"
                   v-if="selected2.indexOf(index) < 0"
-                >star_border</v-icon>
+                >check_circle_outline</v-icon>
                 <v-icon
                   color="yellow darken-2"
                   v-else
-                >star</v-icon>
+                >check_circle</v-icon>
               </v-list-tile-action>
             </v-list-tile>
             <v-divider v-if="index + 1 < team2.length" :key="player.id"></v-divider>
@@ -141,10 +144,12 @@ import PlayersServices from '@/services/PlayersService'
 import TeamsService from '@/services/TeamsService'
 import Panel from '@/components/Panel'
 import Player from '@/components/Player'
+import PageTitle from '@/components/PageTitle'
 export default {
   components: {
     Panel,
-    Player
+    Player,
+    PageTitle
   },
   data () {
     return {
