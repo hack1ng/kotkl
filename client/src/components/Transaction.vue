@@ -1,29 +1,33 @@
 <template>
-  <v-layout mt-3 mb-3>
-    <v-flex>
-      <div class="player-name">
-        {{transaction.type}} {{transaction.player}} from {{transaction.from}} to {{transaction.to}}
-      </div>
-      <!-- <v-btn
-        dark
-        class="orange"
-        @click="navigateTo({
-          name: 'team',
-          params: {
-            teamOwner: team.owner
-          }
-        })">
-        View Team
-      </v-btn> -->
+  <v-layout  row fullwidth>
+    <v-flex xs2>
+      {{transaction.type}}
+    </v-flex>
+    <v-flex  xs5>
+      <player :player=transaction.Player />
+    </v-flex>
+    <v-flex xs5>
+      from {{transaction.from}}
+    </v-flex>
+    <v-flex xs5>
+      to {{transaction.to}}
     </v-flex>
   </v-layout>
 </template>
 
 <script>
+import Player from '@/components/Player'
+import PlayersService from '@/services/PlayersService'
 export default {
   props: [
     'transaction'
-  ]
+  ],
+  async mounted () {
+    this.player = await (PlayersService.getPlayerByName(this.transaction.player)).data
+  },
+  components: {
+    Player
+  }
 }
 </script>
 
@@ -31,5 +35,8 @@ export default {
 <style scoped>
 .player-name {
   font-size: 18px;
+}
+.fullwidth {
+  width: 100%;
 }
 </style>

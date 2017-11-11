@@ -2,7 +2,8 @@ module.exports = (sequelize, DataTypes) => {
   const Team = sequelize.define('Team', {
     owner: {
       type: DataTypes.STRING,
-      unique: true
+      unique: true,
+      primaryKey: true
     },
     name: DataTypes.STRING
   })

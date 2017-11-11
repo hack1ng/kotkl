@@ -1,141 +1,147 @@
 <template>
  <v-layout row wrap>
    <v-flex xs12>
+    <panel title="Mock Trade Tool">
+   <!-- <v-flex xs12>
      <pageTitle title="Mock Trade" />
-   </v-flex>
-    <v-flex xs6 pr-2>
-      <v-select
-        label="Select Team"
-        v-bind:items="teamsList"
-        @change="selectTeam1"
-        item-text="owner"
-        item-value="owner"
-        max-height="auto"
-        chips
-      >
-        <template slot="selection" slot-scope="data">
-          <v-chip
-            @input="data.parent.selectItem(data.item)"
-            :selected="data.selected"
-            :key="JSON.stringify(data.item)"
-          >
-            {{data.item.owner}} - {{ data.item.name }}
-          </v-chip>
-        </template>
-        <template slot="item" slot-scope="data">
-          <template v-if="typeof data.item !== 'object'">
-            <v-list-tile-content v-text="data.item"></v-list-tile-content>
+   </v-flex> -->
+    <v-flex d-flex xs12>
+      <v-flex xs6 pr-2>
+        <v-select
+          label="Select Team"
+          v-bind:items="teamsList"
+          @change="selectTeam1"
+          item-text="owner"
+          item-value="owner"
+          max-height="auto"
+          chips
+        >
+          <template slot="selection" slot-scope="data">
+            <v-chip
+              @input="data.parent.selectItem(data.item)"
+              :selected="data.selected"
+              :key="JSON.stringify(data.item)"
+            >
+              {{data.item.owner}} - {{ data.item.name }}
+            </v-chip>
           </template>
-          <template v-else>
-            <v-list-tile-content>
-              <v-list-tile-title v-html="data.item.owner"></v-list-tile-title>
-              <v-list-tile-sub-title v-html="data.item.name"></v-list-tile-sub-title>
-            </v-list-tile-content>
-          </template>
-        </template>
-      </v-select>
-      <panel title="Team 1">
-        <div class="original-cost">
-          Original Team Cost: {{team1Cost}}
-        </div>
-        <div class="new-cost">
-          New Team Cost: {{team1NewCost}}
-        </div>
-        <v-list two-line>
-          <div v-for="(player, index) in team1"
-            class="team">
-            <v-list-tile
-              ripple
-              @click="toggleTeam1(index, player.originalCost)">
+          <template slot="item" slot-scope="data">
+            <template v-if="typeof data.item !== 'object'">
+              <v-list-tile-content v-text="data.item"></v-list-tile-content>
+            </template>
+            <template v-else>
               <v-list-tile-content>
-                <v-list-tile-title>{{ player.name }}</v-list-tile-title>
-                <v-list-tile-sub-title class="grey--text text--darken-4">Cost: {{player.originalCost}}</v-list-tile-sub-title>
-                <v-list-tile-sub-title>Keeper Eligible? <span v-if="player.keeperEligible=='1'">Yes</span><span v-if="!player.keeperEligible=='1'">No</span></v-list-tile-sub-title>
+                <v-list-tile-title v-html="data.item.owner"></v-list-tile-title>
+                <v-list-tile-sub-title v-html="data.item.name"></v-list-tile-sub-title>
               </v-list-tile-content>
-              <v-list-tile-action>
-                <v-list-tile-action-text>Trade?</v-list-tile-action-text>
-                <v-icon
-                  color="grey lighten-1"
-                  v-if="selected1.indexOf(index) < 0"
-                >check_circle_outline</v-icon>
-                <v-icon
-                  color="yellow darken-2"
-                  v-else
-                >check_circle</v-icon>
-              </v-list-tile-action>
-            </v-list-tile>
-            <v-divider v-if="index + 1 < team1.length" :key="player.id"></v-divider>
+            </template>
+          </template>
+        </v-select>
+        <panel title="Team 1">
+          <div class="original-cost">
+            Original Team Cost: {{team1Cost}}
           </div>
-        </v-list>
-      </panel>
-    </v-flex>
-    <v-flex xs6>
-      <v-select
-        label="Select Team"
-        v-bind:items="teamsList"
-        @change="selectTeam2"
-        item-text="owner"
-        item-value="owner"
-        max-height="auto"
-        chips
-        name="team2Select"
-      >
-        <template slot="selection" slot-scope="data">
-          <v-chip
-            @input="data.parent.selectItem(data.item)"
-            :selected="data.selected"
-            :key="JSON.stringify(data.item)"
-          >
-            {{data.item.owner}} - {{ data.item.name }}
-          </v-chip>
-        </template>
-        <template slot="item" slot-scope="data">
-          <template v-if="typeof data.item !== 'object'">
-            <v-list-tile-content v-text="data.item"></v-list-tile-content>
+          <div class="new-cost">
+            New Team Cost: {{team1NewCost}}
+          </div>
+          <v-list two-line>
+            <div v-for="(player, index) in team1"
+              class="team">
+              <v-list-tile
+                ripple
+                @click="toggleTeam1(index, player.originalCost)">
+                <v-list-tile-content>
+                  <v-list-tile-title>{{ player.name }}</v-list-tile-title>
+                  <v-list-tile-sub-title class="grey--text text--darken-4">Cost: {{player.originalCost}}</v-list-tile-sub-title>
+                  <v-list-tile-sub-title>Keeper Eligible? <span v-if="player.keeperEligible=='1'">Yes</span><span v-if="!player.keeperEligible=='1'">No</span></v-list-tile-sub-title>
+                </v-list-tile-content>
+                <v-list-tile-action>
+                  <v-list-tile-action-text>Trade?</v-list-tile-action-text>
+                  <v-icon
+                    color="grey lighten-1"
+                    v-if="selected1.indexOf(index) < 0"
+                  >check_circle_outline</v-icon>
+                  <v-icon
+                    color="yellow darken-2"
+                    v-else
+                  >check_circle</v-icon>
+                </v-list-tile-action>
+              </v-list-tile>
+              <v-divider v-if="index + 1 < team1.length" :key="player.id"></v-divider>
+            </div>
+          </v-list>
+        </panel>
+      </v-flex>
+      <v-flex xs6>
+        <v-select
+          label="Select Team"
+          v-bind:items="teamsList"
+          @change="selectTeam2"
+          item-text="owner"
+          item-value="owner"
+          max-height="auto"
+          chips
+          name="team2Select"
+        >
+          <template slot="selection" slot-scope="data">
+            <v-chip
+              @input="data.parent.selectItem(data.item)"
+              :selected="data.selected"
+              :key="JSON.stringify(data.item)"
+            >
+              {{data.item.owner}} - {{ data.item.name }}
+            </v-chip>
           </template>
-          <template v-else>
-            <v-list-tile-content>
-              <v-list-tile-title v-html="data.item.owner"></v-list-tile-title>
-              <v-list-tile-sub-title v-html="data.item.name"></v-list-tile-sub-title>
-            </v-list-tile-content>
-          </template>
-        </template>
-      </v-select>
-      <panel title="Team 2">
-        <div class="original-cost">
-          Original Team Cost: {{team2Cost}}
-        </div>
-        <div class="new-cost">
-          New Team Cost: {{team2NewCost}}
-        </div>
-        <v-list two-line>
-          <div v-for="(player, index) in team2"
-            class="team">
-            <v-list-tile
-              ripple
-              @click="toggleTeam2(index, player.originalCost)">
+          <template slot="item" slot-scope="data">
+            <template v-if="typeof data.item !== 'object'">
+              <v-list-tile-content v-text="data.item"></v-list-tile-content>
+            </template>
+            <template v-else>
               <v-list-tile-content>
-                <v-list-tile-title>{{ player.name }}</v-list-tile-title>
-                <v-list-tile-sub-title class="grey--text text--darken-4">Cost: {{player.originalCost}}</v-list-tile-sub-title>
-                <v-list-tile-sub-title>Keeper Eligible? <span v-if="player.keeperEligible=='1'">Yes</span><span v-if="!player.keeperEligible=='1'">No</span></v-list-tile-sub-title>
+                <v-list-tile-title v-html="data.item.owner"></v-list-tile-title>
+                <v-list-tile-sub-title v-html="data.item.name"></v-list-tile-sub-title>
               </v-list-tile-content>
-              <v-list-tile-action>
-                <v-list-tile-action-text>Trade?</v-list-tile-action-text>
-                <v-icon
-                  color="grey lighten-1"
-                  v-if="selected2.indexOf(index) < 0"
-                >check_circle_outline</v-icon>
-                <v-icon
-                  color="yellow darken-2"
-                  v-else
-                >check_circle</v-icon>
-              </v-list-tile-action>
-            </v-list-tile>
-            <v-divider v-if="index + 1 < team2.length" :key="player.id"></v-divider>
+            </template>
+          </template>
+        </v-select>
+        <panel title="Team 2">
+          <div class="original-cost">
+            Original Team Cost: {{team2Cost}}
           </div>
-        </v-list>
-      </panel>
+          <div class="new-cost">
+            New Team Cost: {{team2NewCost}}
+          </div>
+          <v-list two-line>
+            <div v-for="(player, index) in team2"
+              class="team">
+              <v-list-tile
+                ripple
+                @click="toggleTeam2(index, player.originalCost)">
+                <v-list-tile-content>
+                  <v-list-tile-title>{{ player.name }}</v-list-tile-title>
+                  <v-list-tile-sub-title class="grey--text text--darken-4">Cost: {{player.originalCost}}</v-list-tile-sub-title>
+                  <v-list-tile-sub-title>Keeper Eligible? <span v-if="player.keeperEligible=='1'">Yes</span><span v-if="!player.keeperEligible=='1'">No</span></v-list-tile-sub-title>
+                </v-list-tile-content>
+                <v-list-tile-action>
+                  <v-list-tile-action-text>Trade?</v-list-tile-action-text>
+                  <v-icon
+                    color="grey lighten-1"
+                    v-if="selected2.indexOf(index) < 0"
+                  >check_circle_outline</v-icon>
+                  <v-icon
+                    color="yellow darken-2"
+                    v-else
+                  >check_circle</v-icon>
+                </v-list-tile-action>
+              </v-list-tile>
+              <v-divider v-if="index + 1 < team2.length" :key="player.id"></v-divider>
+            </div>
+          </v-list>
+        </panel>
+      </v-flex>
     </v-flex>
+    </panel>
+  </v-flex>
   </v-layout>
 </template>
 
@@ -168,10 +174,6 @@ export default {
   },
   async mounted () {
     this.teamsList = (await TeamsService.getAll()).data
-    // this.teamOwner = this.$store.state.route.params.teamOwner
-    // this.team1 = (await PlayersServices.getAllPlayersFromTeam(this.teamOwner)).data
-    // this.totalCost = this.sumTotalCost()
-    // calculate total team cost
   },
   methods: {
     sumTotalCost (team) {

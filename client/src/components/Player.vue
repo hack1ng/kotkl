@@ -1,5 +1,5 @@
 <template>
-  <v-layout mt-3 mb-3>
+  <v-layout>
     <v-flex>
       <div class="player-name">
         {{player.name}}
@@ -10,18 +10,6 @@
       <div class="player-keeper">
         Keeper Eligible? <span v-if="player.keeperEligible=='1'">Yes</span><span v-if="!player.keeperEligible=='1'">No</span>
       </div>
-
-      <!-- <v-btn
-        dark
-        class="orange"
-        @click="navigateTo({
-          name: 'team',
-          params: {
-            teamOwner: team.owner
-          }
-        })">
-        View Team
-      </v-btn> -->
     </v-flex>
   </v-layout>
 </template>
@@ -30,23 +18,27 @@
 export default {
   props: [
     'player'
-  ],
-  data () {
-    return {
-      name: null,
-      owner: null,
-      originalCost: null,
-      waiverCost: null,
-      keeperEligible: null,
-      imageUrl: null
-    }
-  }
+  ]
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .player-name {
-  font-size: 30px;
+    height: 24px;
+    line-height: 24px;
+    position: relative;
+    text-align: left;
+}
+
+.player-cost {
+    position: relative;
+    text-align: left;
+}
+
+.player-keeper {
+    font-size: 14px;
+    text-align: left;
+    color: rgba(0,0,0,.54);
 }
 </style>

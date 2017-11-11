@@ -3,13 +3,13 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Register from '@/components/Register'
 import Login from '@/components/Login'
-import Songs from '@/components/Songs'
-import CreateSong from '@/components/CreateSong'
 import Teams from '@/components/Teams'
 import Player from '@/components/Player'
 import CreatePlayer from '@/components/CreatePlayer'
+import CreateTransaction from '@/components/CreateTransaction'
 import ViewTeam from '@/components/ViewTeam'
 import ViewMockTrade from '@/components/ViewMockTrade'
+import Transactions from '@/components/Transactions'
 
 Vue.use(Router)
 
@@ -29,16 +29,6 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login
-    },
-    {
-      path: '/songs',
-      name: 'songs',
-      component: Songs
-    },
-    {
-      path: '/songs/create',
-      name: 'songs-create',
-      component: CreateSong
     },
     {
       path: '/teams',
@@ -61,9 +51,19 @@ export default new Router({
       component: CreatePlayer
     },
     {
+      path: '/transaction/create',
+      name: 'transaction-create',
+      component: CreateTransaction
+    },
+    {
       path: '/mockTrade',
       name: 'mock-trade',
       component: ViewMockTrade
+    },
+    {
+      path: '/transactions',
+      name: 'transactions',
+      component: Transactions
     }
   ]
 })

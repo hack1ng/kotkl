@@ -7,7 +7,16 @@ export default {
   create (player) {
     return Api().post('players', player)
   },
+  getPlayerByName (playerName) {
+    return Api().get(`player/${playerName}`)
+  },
   getAllPlayersFromTeam (teamOwner) {
     return Api().get(`players/${teamOwner}`)
+  },
+  getActivePlayers () {
+    return Api().get('activePlayers')
+  },
+  getFreeAgentPlayers () {
+    return Api().get('freeAgentPlayers')
   }
 }

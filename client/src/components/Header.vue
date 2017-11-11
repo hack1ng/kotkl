@@ -20,6 +20,12 @@
         @click="navigateTo({name: 'mock-trade'})" >
         Mock Trade
       </v-btn>
+      <v-btn 
+        flat
+        dark
+        @click="navigateTo({name: 'transactions'})" >
+        View Transactions
+      </v-btn>
     </v-toolbar-items>
     <v-spacer />
     <v-toolbar-items >

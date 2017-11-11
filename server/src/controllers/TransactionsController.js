@@ -1,10 +1,16 @@
 const {Transaction} = require('../models')
+const {Player} = require('../models')
+Transaction.belongsTo(Player, { foreignKey: 'player' })
 
 module.exports = {
   async getAll (req, res) {
   	try {
       const transactions = await Transaction.findAll({
-        where: {}
+        where: {},
+        order: [['id', 'DESC']],
+        include: [
+            Player
+        ]
       })
       res.send(transactions)
     } catch (err) {
@@ -32,7 +38,11 @@ module.exports = {
             from: teamOwner,
             to: teamOwner
           }
-        }
+        },
+        order: [['id', 'DESC']],
+        include: [
+            Player
+        ]
       })
       res.send(transactions)
     } catch (err) {
