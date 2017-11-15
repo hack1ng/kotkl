@@ -4,7 +4,8 @@ module.exports = {
   async getAll (req, res) {
   	try {
       const players = await Player.findAll({
-        where: {}
+        where: {},
+        order: [['name', 'ASC']]
       })
       res.send(players)
     } catch (err) {
@@ -20,6 +21,20 @@ module.exports = {
     } catch (err) {
       res.status(500).send({
         error: 'An error has occured trying to create the player', err
+      })
+    }
+  },
+  async edit (req, res) {
+    try {
+      const player = await Player.update(req.body, {
+        where: {
+          name: req.params.playerName
+        }
+      })
+      res.send(player)
+    } catch (err) {
+      res.status(500).send({
+        error: 'An error has occured trying to edit the player', err
       })
     }
   },
@@ -44,7 +59,8 @@ module.exports = {
       const players = await Player.findAll({
         where: {
           owner: teamOwner
-        }
+        },
+        order: [['name', 'ASC']]
       })
       res.send(players)
     } catch (err) {
@@ -60,7 +76,8 @@ module.exports = {
           $not: {
             owner: 'Free Agent'
           }
-        }
+        },
+        order: [['name', 'ASC']]
       })
       res.send(players)
     } catch (err) {
@@ -74,7 +91,8 @@ module.exports = {
       const players = await Player.findAll({
         where: {
           owner: 'Free Agent'
-        }
+        },
+        order: [['name', 'ASC']]
       })
       res.send(players)
     } catch (err) {

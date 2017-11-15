@@ -5,7 +5,7 @@ export default {
     return Api().get('players')
   },
   create (player) {
-    return Api().post('players', player)
+    return Api().post('createPlayer', player)
   },
   getPlayerByName (playerName) {
     return Api().get(`player/${playerName}`)
@@ -18,5 +18,8 @@ export default {
   },
   getFreeAgentPlayers () {
     return Api().get('freeAgentPlayers')
+  },
+  edit (player) {
+    return Api().put(`editPlayer/${player.name}`, player)
   }
 }

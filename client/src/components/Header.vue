@@ -2,7 +2,7 @@
   <v-toolbar fixed class="orange">
     <v-toolbar-title class="mr-4">
       <span class="home"
-        @click="navigateTo({name: 'root'})">
+        @click="navigateTo({name: 'teams'})">
         Knights of the Keeper League
       </span>
     </v-toolbar-title>
@@ -25,6 +25,12 @@
         dark
         @click="navigateTo({name: 'transactions'})" >
         View Transactions
+      </v-btn>
+      <v-btn 
+        flat
+        dark
+        @click="navigateTo({name: 'transactions-add'})" >
+        Add Transaction
       </v-btn>
     </v-toolbar-items>
     <v-spacer />

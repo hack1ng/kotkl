@@ -4,8 +4,8 @@ export default {
   getAll () {
     return Api().get('transactions')
   },
-  add (transaction) {
-    return Api().post('transactions')
+  create (transaction) {
+    return Api().post('createTransaction', transaction)
   },
   getAllTransactionsForTeam (teamOwner) {
     return Api().get(`transactions/${teamOwner}`)

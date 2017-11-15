@@ -11,6 +11,7 @@
         <v-text-field
           label="Owner"
           required
+          disabled
           :rules="[required]"
           v-model="player.owner"
         ></v-text-field>
@@ -32,7 +33,7 @@
           </v-radio-group>
         </v-flex>
         <v-text-field
-          label="Image"
+          label="Image URL"
           v-model="player.imageUrl"
         ></v-text-field>
       </panel>
@@ -56,10 +57,10 @@ export default {
     return {
       player: {
         name: null,
-        owner: null,
-        originalCost: null,
+        owner: 'Free Agent',
+        originalCost: 0,
         waiverCost: null,
-        keeperEligible: null,
+        keeperEligible: '0',
         imageUrl: null
       },
       required: (value) => !!value || 'Required.'
@@ -75,6 +76,10 @@ export default {
       } catch (err) {
         console.log(err)
       }
+      this.navigateTo({name: 'transactions-add'})
+    },
+    navigateTo (route) {
+      this.$router.push(route)
     }
   }
 }

@@ -24,7 +24,7 @@ module.exports = (app) => {
   app.get('/players',
     PlayersController.getAll)
 
-  app.post('/players',
+  app.post('/createPlayer',
     PlayersController.add)
 
   app.get('/players/:teamOwner',
@@ -39,10 +39,13 @@ module.exports = (app) => {
   app.get('/freeAgentPlayers',
     PlayersController.getFreeAgentPlayers)
 
+  app.put('/editPlayer/:playerName',
+    PlayersController.edit)
+
   app.get('/transactions',
     TransactionsController.getAll)
 
-  app.post('/transactions',
+  app.post('/createTransaction',
     TransactionsController.add)
 
   app.get('/transactions/:teamOwner',

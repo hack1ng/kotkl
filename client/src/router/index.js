@@ -51,8 +51,8 @@ export default new Router({
       component: CreatePlayer
     },
     {
-      path: '/transaction/create',
-      name: 'transaction-create',
+      path: '/transactions/add',
+      name: 'transactions-add',
       component: CreateTransaction
     },
     {

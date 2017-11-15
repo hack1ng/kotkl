@@ -2,6 +2,18 @@
   <v-layout wrap>
     <v-flex xs12>
       <panel title="Transactions">
+        <v-btn
+            absolute
+            dark
+            bottom
+            right
+            slot="action"
+            color="orange"
+            @click="navigateTo({name: 'transactions-add'})"
+          >
+          <v-icon>add</v-icon>
+          Add Transaction
+        </v-btn>
         <v-flex offset-xs3 xs6>
           <v-text-field 
             append-icon="search"
@@ -51,6 +63,11 @@ export default {
         { text: 'From', sortable: false, align: 'center', value: 'from' },
         { text: 'To', sortable: false, align: 'center', value: 'to' }
       ]
+    }
+  },
+  methods: {
+    navigateTo (route) {
+      this.$router.push(route)
     }
   },
   async mounted () {

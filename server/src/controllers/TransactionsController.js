@@ -25,7 +25,7 @@ module.exports = {
       res.send(transaction)
     } catch (err) {
       res.status(500).send({
-        error: 'An error has occured trying to create the transaction'
+        error: 'An error has occured trying to create the transaction', err
       })
     }
   },
